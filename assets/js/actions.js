@@ -5,6 +5,7 @@
 export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
+export const TRUNCATE_AUTO_TODOS = 'TRUNCATE_AUTO_TODOS'
 
 /*
  * other constants
@@ -30,4 +31,8 @@ export function toggleTodo(index) {
 
 export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter };
+}
+
+export function truncateAutoTodos() {
+  return { type: TRUNCATE_AUTO_TODOS };
 }

@@ -17,3 +17,17 @@ React.render(
   </Provider>,
   rootElement
 );
+
+import {addTodo, truncateAutoTodos} from './actions';
+let i = 0;
+setInterval(() => {
+  i += 1;
+  if(i%10==0)
+  {
+    store.dispatch(truncateAutoTodos())
+  }
+  else
+  {
+    store.dispatch(addTodo(`Auto todo ${i}`))
+  }
+}, 1000)

@@ -4,11 +4,13 @@ import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters } from '../
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
 import Footer from '../components/Footer';
+import Reddit from '../components/Reddit';
+
 
 class App extends Component {
   render() {
     // Injected by connect() call:
-    const { dispatch, visibleTodos, visibilityFilter } = this.props;
+    const { dispatch, visibleTodos, visibilityFilter, selectedReddit, posts } = this.props;
     return (
       <div>
         <AddTodo
@@ -25,6 +27,10 @@ class App extends Component {
           onFilterChange={nextFilter =>
             dispatch(setVisibilityFilter(nextFilter))
           } />
+        <Reddit
+          selectedReddit={selectedReddit}
+          posts={posts}
+          />
       </div>
     );
   }
@@ -58,7 +64,9 @@ function selectTodos(todos, filter) {
 function select(state) {
   return {
     visibleTodos: selectTodos(state.todos, state.visibilityFilter),
-    visibilityFilter: state.visibilityFilter
+    visibilityFilter: state.visibilityFilter,
+    selectedReddit: state.selectedReddit,
+    posts: state.postsByReddit[state.selectedReddit].items
   };
 }
 

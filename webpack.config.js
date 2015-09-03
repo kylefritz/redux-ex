@@ -6,7 +6,7 @@ var assetsPluginInstance = new AssetsPlugin();
 var ROOT_PATH = path.resolve(__dirname);
 
 module.exports = {
-    entry: path.resolve(ROOT_PATH, "assets/js/entry"),
+    entry: path.resolve(ROOT_PATH, "assets/js/index"),
     resolve: {
       extensions: ['', '.js', '.jsx'],
     },

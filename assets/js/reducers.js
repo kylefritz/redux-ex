@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_TODO, COMPLETE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions';
+import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, TRUNCATE_AUTO_TODOS, VisibilityFilters } from './actions';
 const { SHOW_ALL } = VisibilityFilters;
 
 function visibilityFilter(state = SHOW_ALL, action) {
@@ -18,11 +18,13 @@ function todos(state = [], action) {
       text: action.text,
       completed: false
     }];
-  case COMPLETE_TODO:
+  case TRUNCATE_AUTO_TODOS:
+    return state.filter( (todo) => !(todo.text.match(/^Auto/)) );
+  case TOGGLE_TODO:
     return [
       ...state.slice(0, action.index),
       Object.assign({}, state[action.index], {
-        completed: true
+        completed: !state[action.index].completed
       }),
       ...state.slice(action.index + 1)
     ];
